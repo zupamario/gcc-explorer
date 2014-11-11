@@ -21,7 +21,8 @@ static int allowed_match(const char* path, const char* okpath) {
     }
 
     while (*okpath) {
-        const char* end = strchrnul(okpath, ':');
+        const char* end = okpath;
+	while  (*end != ':' && *end != '\0') ++end;
         if (strncmp(okpath, resolved, end - okpath) == 0) return 1;
         okpath = end;
         while (*okpath == ':') ++okpath;
